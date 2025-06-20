@@ -1,7 +1,6 @@
 import flet as ft
 import os
 
-
 class View(ft.UserControl):
     def __init__(self, page: ft.Page):
         super().__init__()
@@ -46,7 +45,7 @@ class View(ft.UserControl):
 
         self._txtYears = ft.TextField(label="Insert max years")
         self._txtHours = ft.TextField(label="Insert max hours")
-        self._btnWorstCase = ft.ElevatedButton(text="Worst-Case analysis", on_click=self._controller.handleWorstCase)
+        self._btnWorstCase = ft.ElevatedButton(text="Worst-Case analysis", on_click= self._controller.handleWorstCase)
 
         row1 = ft.Row([
             ft.Column([self._logo]),
@@ -61,6 +60,17 @@ class View(ft.UserControl):
 
         self._page.add(self._txtOut)
 
+        self._page.update()
+
+    def load_output(self, nerc, ore, anni, max_coinvolti, listaOttima):
+        txt = ft.Text(f"NERC: {nerc} - massimo ore: {ore} - masssimo span di anni: {anni}\n"
+                      f"Numero coinvolti worst case: {max_coinvolti}")
+        lv = ft.ListView()
+        for evento in listaOttima:
+            lv.controls.append((ft.Text(evento)))
+
+        self._page.add(txt)
+        self._page.add(lv)
         self._page.update()
 
     @property

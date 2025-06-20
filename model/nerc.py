@@ -14,7 +14,7 @@ class Nerc:
         return self._value
 
     def __str__(self):
-        return self._value
+        return f"{self._value} - {self._id}"
 
     def __hash__(self):
         return hash(self._id)
